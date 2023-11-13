@@ -12,5 +12,9 @@ namespace View
         {
             Pool.Push(this);
         }
+        
+        public virtual void OnPush() { }
+
+        public virtual void OnPop() { }
     }
 }

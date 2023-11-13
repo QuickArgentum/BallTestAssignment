@@ -29,9 +29,17 @@ namespace View
             }
         }
 
-        private void OnGet(GameObject obj) => obj.SetActive(true);
+        private void OnGet(GameObject obj)
+        {
+            obj.SetActive(true);
+            obj.GetComponent<View>().OnPop();
+        }
         
-        private void OnRelease(GameObject obj) => obj.SetActive(false);
+        private void OnRelease(GameObject obj)
+        {
+            obj.SetActive(false);
+            obj.GetComponent<View>().OnPush();
+        }
 
         public T Pop<T>(PrefabType type, Vector3 position, Quaternion rotation)
         {
