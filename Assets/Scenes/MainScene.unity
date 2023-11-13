@@ -2823,8 +2823,10 @@ GameObject:
   - component: {fileID: 1650318495}
   - component: {fileID: 1650318497}
   - component: {fileID: 1650318496}
+  - component: {fileID: 1650318499}
+  - component: {fileID: 1650318498}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: GameOverPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2889,6 +2891,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1650318494}
   m_CullTransparentMesh: 1
+--- !u!114 &1650318498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650318494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0166d8ff8d905b048b2448179e1f5d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _components:
+  - {fileID: 1650318499}
+  _identifier: 
+  _useSceneContext: 0
+  _context: {fileID: 2138741880}
+  _bindType: 0
+--- !u!114 &1650318499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650318494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 915c791d4aa149ff907407bcaf8a28c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1650318496}
+  title: {fileID: 1558806398}
+  subtitle: {fileID: 90042035}
+  elementFadeDuration: 1.2
 --- !u!1 &1934641054
 GameObject:
   m_ObjectHideFlags: 0

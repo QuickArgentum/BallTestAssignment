@@ -1,22 +1,22 @@
-﻿using DataHolder;
+﻿using Const;
+using DataHolder;
 
 namespace Handlers
 {
     public class GameOverHandler
     {
-        private readonly GameFacade _facade;
+        private readonly GameStateHolder _gameStateHolder;
 
-        public GameOverHandler(GameStateHolder gameStateHolder, GameFacade facade)
+        public GameOverHandler(GameStateHolder gameStateHolder)
         {
-            _facade = facade;
-
+            _gameStateHolder = gameStateHolder;
             gameStateHolder.OnPlayerEnergyUpdated += OnEnergyUpdated;
         }
 
         private void OnEnergyUpdated(float value)
         {
             if (value <= 0)
-                _facade.RestartGame();
+                _gameStateHolder.GameState = GameState.GameOverScreenShowing;
         }
     }
 }

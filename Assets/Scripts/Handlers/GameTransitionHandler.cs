@@ -1,6 +1,7 @@
 ﻿using Const;
 using DataHolder;
 using DG.Tweening;
+using Input;
 using UI;
 using View;
 
@@ -12,14 +13,18 @@ namespace Handlers
         private readonly FadePanelUI _fadePanelUI;
         private readonly GameFacade _facade;
         private readonly CameraView _cameraView;
+        private readonly GameOverPanelUI _gameOverPanelUI;
+        private readonly ITouchManager _touchManager;
 
         public GameTransitionHandler(GameStateHolder gameStateHolder, FadePanelUI fadePanelUI, GameFacade facade,
-            CameraView cameraView)
+            CameraView cameraView, GameOverPanelUI gameOverPanelUI, ITouchManager touchManager)
         {
             _gameStateHolder = gameStateHolder;
             _fadePanelUI = fadePanelUI;
             _facade = facade;
             _cameraView = cameraView;
+            _gameOverPanelUI = gameOverPanelUI;
+            _touchManager = touchManager;
             _gameStateHolder.OnGameStateUpdated += OnGameStateUpdated;
         }
 
@@ -44,9 +49,21 @@ namespace Handlers
                     break;
                 
                 case GameState.GameOverScreenShowing:
+                    _gameOverPanelUI.SetEnabled(true);
+                    _gameOverPanelUI.CreateFadeInTween()
+                        .OnComplete(() => _gameStateHolder.GameState = GameState.GameOver)
+                        .Play();
                     break;
                 
                 case GameState.GameOver:
+                    void OnTouch()
+                    {
+                        _touchManager.OnTapEnd -= OnTouch;
+                        _gameOverPanelUI.CreateFadeOutTween()
+                            .OnComplete(() => _gameStateHolder.GameState = GameState.FadingOut)
+                            .Play();
+                    }
+                    _touchManager.OnTapEnd += OnTouch;
                     break;
                 
                 case GameState.FadingOut:

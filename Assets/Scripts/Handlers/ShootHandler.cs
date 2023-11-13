@@ -9,6 +9,7 @@ namespace Handlers
     {
         private readonly PlayerView _player;
         private readonly ViewPool _viewPool;
+        private readonly ITouchManager _touchManager;
         private readonly GameStateHolder _gameStateHolder;
         private readonly GameConfig _gameConfig;
 
@@ -17,11 +18,27 @@ namespace Handlers
         {
             _player = player;
             _viewPool = viewPool;
+            _touchManager = touchManager;
             _gameStateHolder = gameStateHolder;
             _gameConfig = gameConfig;
 
-            touchManager.OnTapEnd += OnTapEnd;
+            _gameStateHolder.OnGameStateUpdated += OnGameStateUpdated;
         }
+
+        private void OnGameStateUpdated(GameState value)
+        {
+            switch (value)
+            {
+                case GameState.Playing:
+                    _touchManager.OnTapEnd += OnTapEnd;
+                    break;
+                
+                case GameState.GameOverScreenShowing:
+                    _touchManager.OnTapEnd -= OnTapEnd;
+                    break;
+            }
+        }
+
 
         private void OnTapEnd()
         {
