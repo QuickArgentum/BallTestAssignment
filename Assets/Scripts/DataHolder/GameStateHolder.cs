@@ -1,4 +1,5 @@
 ﻿using System;
+using Const;
 
 namespace DataHolder
 {
@@ -14,6 +15,19 @@ namespace DataHolder
             {
                 _playerEnergy = value;
                 OnPlayerEnergyUpdated?.Invoke(value);
+            }
+        }
+
+        public event Action<GameState> OnGameStateUpdated;
+
+        private GameState _gameState;
+        public GameState GameState
+        {
+            get => _gameState;
+            set
+            {
+                _gameState = value;
+                OnGameStateUpdated?.Invoke(value);
             }
         }
 
