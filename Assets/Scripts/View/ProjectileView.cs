@@ -4,8 +4,6 @@ namespace View
 {
     public class ProjectileView : View
     {
-        [SerializeField] private float velocity;
-
         private Transform _transform;
         private Rigidbody _rigidbody;
 
@@ -20,7 +18,7 @@ namespace View
             Push();
         }
 
-        public void Shoot()
+        public void Shoot(float velocity)
         {
             _rigidbody.velocity = _transform.forward * velocity;
         }
