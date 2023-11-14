@@ -1691,6 +1691,8 @@ MonoBehaviour:
     prefab: {fileID: 1238227998385539593, guid: a53b588095b48b74fa1c7f67aa7d2b49, type: 3}
   - type: 4
     prefab: {fileID: 6788094288072132624, guid: 26bf61d9d964f1f43b72d96fe906f532, type: 3}
+  - type: 5
+    prefab: {fileID: 1180854867142208087, guid: a95a747cd5bea1e49b7867dcae611749, type: 3}
   obstacleContainer: {fileID: 960263358}
 --- !u!114 &2138741880
 MonoBehaviour:

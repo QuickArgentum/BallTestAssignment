@@ -2,6 +2,7 @@
 using Data;
 using UnityEngine;
 using UnityEngine.Pool;
+using Zenject;
 
 namespace View
 {
@@ -10,7 +11,7 @@ namespace View
         private readonly Dictionary<PrefabType, IObjectPool<GameObject>> _pools = new();
         private readonly Dictionary<PrefabType, GameObject> _prefabs = new();
 
-        public ViewPool(PoolablePrefabConfig[] configs)
+        public ViewPool(PoolablePrefabConfig[] configs, DiContainer container)
         {
             foreach (var config in configs)
             {
@@ -18,7 +19,7 @@ namespace View
 
                 GameObject Create()
                 {
-                    var obj = Object.Instantiate(_prefabs[config.type]);
+                    var obj = container.InstantiatePrefab(_prefabs[config.type]);
                     var view = obj.GetComponent<View>();
                     view.Pool = this;
                     view.Type = config.type;

@@ -92,8 +92,10 @@ namespace Handlers
 
         private void CreateExplosion(ProjectileView projectile)
         {
-           var explosion = _viewPool.Pop<ExplosionView>(PrefabType.Explosion, projectile.transform.position, Quaternion.identity);
+            var position = projectile.Transform.position;
+            var explosion = _viewPool.Pop<ExplosionView>(PrefabType.Explosion, position, Quaternion.identity);
            explosion.Explode(projectile.Energy * _gameConfig.explosionScalePerEnergy);
+           _viewPool.Pop<ProjectileBreakParticlesView>(PrefabType.ProjectileBreakEffect, position, Quaternion.identity);
         }
 
         void ITickable.Tick()

@@ -6,6 +6,7 @@
         Projectile,
         Obstacle,
         Explosion,
-        ObstacleDeathEffect
+        ObstacleDeathEffect,
+        ProjectileBreakEffect
     }
 }
