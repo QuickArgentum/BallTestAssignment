@@ -3,6 +3,7 @@
     public enum PrefabType
     {
         None,
-        Projectile
+        Projectile,
+        Obstacle
     }
 }

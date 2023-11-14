@@ -15,6 +15,9 @@ namespace View
 
         private void OnCollisionEnter(Collision collision)
         {
+            if (!gameObject.activeSelf)
+                return;
+            
             Push();
         }
 

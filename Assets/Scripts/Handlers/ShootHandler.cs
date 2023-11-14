@@ -39,7 +39,6 @@ namespace Handlers
             }
         }
 
-
         private void OnTapEnd()
         {
             var point = _player.ProjectilePoint;

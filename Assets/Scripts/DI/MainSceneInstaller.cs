@@ -10,6 +10,7 @@ namespace DI
     public class MainSceneInstaller : MonoInstaller
     {
         [SerializeField] private PoolablePrefabConfig[] poolablePrefabConfigs;
+        [SerializeField] private Transform obstacleContainer;
 
         public override void InstallBindings()
         {
@@ -24,6 +25,7 @@ namespace DI
 
             Container.BindInterfacesAndSelfTo<GameFacade>().AsSingle();
             Container.Bind<GameStateHolder>().AsSingle();
+            Container.BindInterfacesAndSelfTo<ObstacleSpawner>().AsSingle().WithArguments(obstacleContainer);
             
             Container.Bind<ShootHandler>().AsSingle().NonLazy();
             Container.Bind<PlayerVisualsHandler>().AsSingle().NonLazy();

@@ -14,3 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   energyPerShot: 0.05
   projectileVelocity: 15
+  obstacleGenerationAttempts: 100
+  obstacleFieldWidth: 8
+  obstacleFieldHeight: 12
+  obstacleNoiseScale: 1
+  obstacleNoiseBias: 0.3
