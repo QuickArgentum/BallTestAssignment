@@ -1710,6 +1710,8 @@ MonoBehaviour:
     prefab: {fileID: 8937494078097175065, guid: 7268b58ddc6afd04a8a8bc01aec0e593, type: 3}
   - type: 2
     prefab: {fileID: 3291084050544259139, guid: e2a8f11536e3c374d870d2370561ac3a, type: 3}
+  - type: 3
+    prefab: {fileID: 1238227998385539593, guid: a53b588095b48b74fa1c7f67aa7d2b49, type: 3}
   obstacleContainer: {fileID: 960263358}
 --- !u!114 &2138741880
 MonoBehaviour:

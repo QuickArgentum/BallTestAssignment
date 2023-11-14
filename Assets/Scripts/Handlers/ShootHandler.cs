@@ -1,6 +1,7 @@
 ﻿using Const;
 using DataHolder;
 using Input;
+using UnityEngine;
 using View;
 
 namespace Handlers
@@ -43,9 +44,23 @@ namespace Handlers
         {
             var point = _player.ProjectilePoint;
             var projectile = _viewPool.Pop<ProjectileView>(PrefabType.Projectile, point.position, point.rotation);
-            projectile.Shoot(_gameConfig.projectileVelocity);
+            
+            void OnCollision()
+            {
+                projectile.OnCollision -= OnCollision;
+                CreateExplosion(projectile.transform.position);
+            }
+
+            projectile.OnCollision += OnCollision;
+            projectile.Shoot(_gameConfig.projectileVelocity, _gameStateHolder.PlayerEnergy);
 
             _gameStateHolder.PlayerEnergy -= _gameConfig.energyPerShot;
+        }
+
+        private void CreateExplosion(Vector3 position)
+        {
+           var explosion = _viewPool.Pop<ExplosionView>(PrefabType.Explosion, position, Quaternion.identity);
+           explosion.Explode(_gameStateHolder.PlayerEnergy * _gameConfig.explosionScalePerEnergy);
         }
     }
 }

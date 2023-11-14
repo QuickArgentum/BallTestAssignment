@@ -4,6 +4,7 @@
     {
         None,
         Projectile,
-        Obstacle
+        Obstacle,
+        Explosion
     }
 }
