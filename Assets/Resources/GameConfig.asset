@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: GameConfig
   m_EditorClassIdentifier: 
   projectileVelocity: 15
-  explosionScalePerEnergy: 25
+  explosionScalePerEnergy: 15
   refireInterval: 0.5
   minShotEnergy: 0.035
-  maxShotEnergy: 0.2
-  energyTransferRate: 0.2
+  maxShotEnergy: 0.4
+  energyTransferRate: 0.4
   energyTransferCurve:
     serializedVersion: 2
     m_Curve:
@@ -42,7 +42,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  obstacleGenerationAttempts: 100
+  obstacleGenerationAttempts: 150
   obstacleFieldWidth: 8
   obstacleFieldHeight: 12
   obstacleNoiseScale: 1

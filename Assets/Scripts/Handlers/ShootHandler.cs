@@ -20,6 +20,7 @@ namespace Handlers
         private ProjectileView _projectile;
         private float _holdTime;
         private bool _autoStop;
+        private bool _isTicking;
 
         public ShootHandler(PlayerView player, ViewPool viewPool, ITouchManager touchManager,
             GameStateHolder gameStateHolder, GameConfig gameConfig, TickableManager tickableManager)
@@ -45,6 +46,13 @@ namespace Handlers
                 
                 case GameState.WinAnimationShowing:
                 case GameState.GameOverScreenShowing:
+                    if (_isTicking)
+                        _tickableManager.Remove(this);
+                    
+                    if(_projectile != null)
+                        _projectile.PlayDisappearAnimation();
+                    
+                    _isTicking = false;
                     _touchManager.OnTapStart -= OnTapStart;
                     _touchManager.OnTapEnd -= OnTapEnd;
                     break;
@@ -69,6 +77,7 @@ namespace Handlers
 
             _projectile = projectile;
             _tickableManager.Add(this);
+            _isTicking = true;
         }
 
         private void OnTapEnd()
@@ -84,6 +93,7 @@ namespace Handlers
 
         private void LaunchProjectile()
         {
+            _isTicking = false;
             _tickableManager.Remove(this);
             _projectile.Shoot(_gameConfig.projectileVelocity);
 

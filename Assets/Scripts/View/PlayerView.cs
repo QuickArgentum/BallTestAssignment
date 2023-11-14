@@ -7,12 +7,23 @@ namespace View
     {
         [SerializeField] private Transform projectilePoint;
         [SerializeField] private Transform mesh;
+        [SerializeField] private ParticleSystem deathEffect;
+        [SerializeField] private float minScale;
         [SerializeField] private float victoryAnticipationDuration;
         [SerializeField] private float victoryFlyDuration;
 
+        private Vector3 _originalScale;
+        private Vector3 _minScale;
+
+        private void Awake()
+        {
+            _originalScale = mesh.localScale;
+            _minScale = new Vector3(minScale, minScale, minScale);
+        }
+
         public float Scale
         {
-            set => mesh.localScale = new Vector3(value, value, value);
+            set => mesh.localScale = Vector3.Lerp(_minScale, _originalScale, value);
             get => mesh.localScale.x;
         }
 
@@ -26,6 +37,12 @@ namespace View
                 .Append(Transform.DOMove(destination, victoryFlyDuration).SetEase(Ease.InCubic))
                 .Join(Transform.DOScaleZ(1.5f, victoryFlyDuration / 2).SetEase(Ease.InQuad))
                 .Join(Transform.DOScaleZ(1.0f, victoryFlyDuration / 2).SetEase(Ease.OutQuad));
+        }
+
+        public void PlayDeathAnimation()
+        {
+            Transform.DOScale(Vector3.zero, 0.25f);
+            deathEffect.Play();
         }
     }
 }

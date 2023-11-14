@@ -1,4 +1,5 @@
 ﻿using System;
+using DG.Tweening;
 using UnityEngine;
 
 namespace View
@@ -45,6 +46,11 @@ namespace View
         {
             Energy = 0;
             _rigidbody.velocity = Vector3.zero;
+        }
+
+        public void PlayDisappearAnimation()
+        {
+            Transform.DOScale(Vector3.zero, 0.3f);
         }
     }
 }
