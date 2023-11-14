@@ -16,4 +16,5 @@ public class GameConfig : ScriptableObject
     public float obstacleNoiseScale;
     [Range(0, 1)]
     public float obstacleNoiseBias;
+    public float obstacleDeathDelay;
 }

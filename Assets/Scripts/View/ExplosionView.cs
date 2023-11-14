@@ -25,6 +25,7 @@ namespace View
             DOTween.Sequence()
                 .Append(_transform.DOScale(Vector3.one * scale, explosionDuration).SetEase(Ease.OutQuad))
                 .Append(_material.DOFade(0, fadeDuration))
+                .AppendCallback(Push)
                 .Play();
         }
 
@@ -32,6 +33,12 @@ namespace View
         {
             _transform.localScale = Vector3.zero;
             _material.color = _startColor;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.TryGetComponent<ObstacleView>(out var obstacle))
+                obstacle.Infect();
         }
     }
 }

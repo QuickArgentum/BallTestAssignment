@@ -69,6 +69,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0869ff394ca649bf906824c4053336de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  infectedColor: {r: 1, g: 0.9428538, b: 0.2783019, a: 1}
+  renderer: {fileID: 6229766472442026794}
 --- !u!1 &6121092414437657855
 GameObject:
   m_ObjectHideFlags: 0

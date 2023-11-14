@@ -48,19 +48,19 @@ namespace Handlers
             void OnCollision()
             {
                 projectile.OnCollision -= OnCollision;
-                CreateExplosion(projectile.transform.position);
+                CreateExplosion(projectile);
             }
 
             projectile.OnCollision += OnCollision;
-            projectile.Shoot(_gameConfig.projectileVelocity, _gameStateHolder.PlayerEnergy);
+            projectile.Shoot(_gameConfig.projectileVelocity, _gameConfig.energyPerShot);
 
             _gameStateHolder.PlayerEnergy -= _gameConfig.energyPerShot;
         }
 
-        private void CreateExplosion(Vector3 position)
+        private void CreateExplosion(ProjectileView projectile)
         {
-           var explosion = _viewPool.Pop<ExplosionView>(PrefabType.Explosion, position, Quaternion.identity);
-           explosion.Explode(_gameStateHolder.PlayerEnergy * _gameConfig.explosionScalePerEnergy);
+           var explosion = _viewPool.Pop<ExplosionView>(PrefabType.Explosion, projectile.transform.position, Quaternion.identity);
+           explosion.Explode(projectile.Energy * _gameConfig.explosionScalePerEnergy);
         }
     }
 }

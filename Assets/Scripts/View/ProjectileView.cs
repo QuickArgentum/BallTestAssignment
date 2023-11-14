@@ -1,5 +1,4 @@
 ﻿using System;
-using Const;
 using UnityEngine;
 
 namespace View
@@ -12,6 +11,9 @@ namespace View
         
         private Transform _transform;
         private Rigidbody _rigidbody;
+        private float _energy;
+
+        public float Energy => _energy;
 
         private void Awake()
         {
@@ -31,7 +33,8 @@ namespace View
         public void Shoot(float velocity, float energy)
         {
             _rigidbody.velocity = _transform.forward * velocity;
-            _transform.localScale = Vector3.one * energy;
+            _energy = energy;
+            _transform.localScale = Vector3.one * energy * scalePerEnergy;
         }
 
         public override void OnPush()

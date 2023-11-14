@@ -1,4 +1,5 @@
-﻿using Const;
+﻿using System.Collections;
+using Const;
 using UnityEngine;
 using View;
 using Zenject;
@@ -34,7 +35,21 @@ public class ObstacleSpawner : IInitializable
 
             var obstacle = _viewPool.Pop<ObstacleView>(PrefabType.Obstacle, position + containerPosition,
                 Quaternion.AngleAxis(Random.Range(0, 360), Vector3.up));
+
+            void OnInfected()
+            {
+                obstacle.OnInfected -= OnInfected;
+                obstacle.StartCoroutine(InfectedCoroutine(obstacle));
+            }
+
+            obstacle.OnInfected += OnInfected;
             obstacle.transform.parent = _container;
         }
+    }
+
+    private IEnumerator InfectedCoroutine(ObstacleView obstacle)
+    {
+        yield return new WaitForSeconds(_gameConfig.obstacleDeathDelay);
+        obstacle.Push();
     }
 }
