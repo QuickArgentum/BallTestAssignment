@@ -1,8 +1,7 @@
 ﻿using System;
-using Const;
 using UnityEngine;
 
-namespace View
+namespace Data
 {
     [Serializable]
     public struct PoolablePrefabConfig

@@ -9,15 +9,21 @@ namespace View
 
         public event Action OnCollision;
         
-        private Transform _transform;
         private Rigidbody _rigidbody;
-        private float _energy;
 
-        public float Energy => _energy;
+        private float _energy;
+        public float Energy
+        {
+            get => _energy;
+            set
+            {
+                _energy = value;
+                Transform.localScale = Vector3.one * value * scalePerEnergy;
+            }
+        }
 
         private void Awake()
         {
-            _transform = transform;
             _rigidbody = GetComponent<Rigidbody>();
         }
 
@@ -30,15 +36,14 @@ namespace View
             Push();
         }
 
-        public void Shoot(float velocity, float energy)
+        public void Shoot(float velocity)
         {
-            _rigidbody.velocity = _transform.forward * velocity;
-            _energy = energy;
-            _transform.localScale = Vector3.one * energy * scalePerEnergy;
+            _rigidbody.velocity = Transform.forward * velocity;
         }
 
-        public override void OnPush()
+        public override void OnPop()
         {
+            Energy = 0;
             _rigidbody.velocity = Vector3.zero;
         }
     }

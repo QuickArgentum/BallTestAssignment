@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using Const;
+using Data;
 using UnityEngine;
 using View;
 using Zenject;

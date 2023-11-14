@@ -9,13 +9,11 @@ namespace View
         [SerializeField] private float explosionDuration;
         [SerializeField] private float fadeDuration;
 
-        private Transform _transform;
         private Material _material;
         private Color _startColor;
 
         private void Awake()
         {
-            _transform = transform;
             _material = renderer.material;
             _startColor = _material.color;
         }
@@ -23,7 +21,7 @@ namespace View
         public void Explode(float scale)
         {
             DOTween.Sequence()
-                .Append(_transform.DOScale(Vector3.one * scale, explosionDuration).SetEase(Ease.OutQuad))
+                .Append(Transform.DOScale(Vector3.one * scale, explosionDuration).SetEase(Ease.OutQuad))
                 .Append(_material.DOFade(0, fadeDuration))
                 .AppendCallback(Push)
                 .Play();
@@ -31,7 +29,7 @@ namespace View
 
         public override void OnPop()
         {
-            _transform.localScale = Vector3.zero;
+            Transform.localScale = Vector3.zero;
             _material.color = _startColor;
         }
 

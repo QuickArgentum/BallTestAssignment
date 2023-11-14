@@ -12,9 +12,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2450ea9ea0340b4a64ffbfa871cacff, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: 
-  energyPerShot: 0.05
   projectileVelocity: 15
-  explosionScalePerEnergy: 100
+  explosionScalePerEnergy: 25
+  refireInterval: 0.5
+  minShotEnergy: 0.035
+  maxShotEnergy: 0.2
+  energyTransferRate: 0.2
+  energyTransferCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.9989319
+      inSlope: -0.007216371
+      outSlope: -0.007216371
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.2731625
+    - serializedVersion: 3
+      time: 0.6917363
+      value: 0.24140915
+      inSlope: 0.031627554
+      outSlope: 0.031627554
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.64097506
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   obstacleGenerationAttempts: 100
   obstacleFieldWidth: 8
   obstacleFieldHeight: 12

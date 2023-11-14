@@ -4,10 +4,13 @@
 public class GameConfig : ScriptableObject
 {
     [Header("Shooting")]
-    [Range(0, 1)]
-    public float energyPerShot;
     public float projectileVelocity;
     public float explosionScalePerEnergy;
+    public float refireInterval;
+    public float minShotEnergy;
+    public float maxShotEnergy;
+    public float energyTransferRate;
+    public AnimationCurve energyTransferCurve;
     
     [Header("Obstacles")]
     public int obstacleGenerationAttempts;

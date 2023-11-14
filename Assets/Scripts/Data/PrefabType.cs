@@ -1,4 +1,4 @@
-﻿namespace Const
+﻿namespace Data
 {
     public enum PrefabType
     {
