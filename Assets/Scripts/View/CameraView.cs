@@ -7,6 +7,8 @@ namespace View
     {
         [SerializeField] private float fovAnimDelta;
         [SerializeField] private float fovDuration;
+        [SerializeField] private float shakeDurationPerEnergy;
+        [SerializeField] private float shakeStrengthPerEnergy;
         
         private Camera _camera;
         private float _fov;
@@ -26,6 +28,11 @@ namespace View
         public Tween CreateOutroTween()
         {
             return _camera.DOFieldOfView(_fov + fovAnimDelta, fovDuration);
+        }
+
+        public void PlayShake(float energy)
+        {
+            Transform.DOShakeRotation(shakeDurationPerEnergy * energy, shakeStrengthPerEnergy * energy, 20);
         }
     }
 }

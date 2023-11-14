@@ -12,16 +12,18 @@ namespace Handlers
         private readonly PlayerView _player;
         private readonly DestinationView _destination;
         private readonly GameStateHolder _gameStateHolder;
+        private readonly CameraView _camera;
 
         private int _infectedCount;
 
         public VictoryHandler(ObstacleSpawner obstacleSpawner, PlayerView player, DestinationView destination,
-            GameStateHolder gameStateHolder)
+            GameStateHolder gameStateHolder, CameraView camera)
         {
             _obstacleSpawner = obstacleSpawner;
             _player = player;
             _destination = destination;
             _gameStateHolder = gameStateHolder;
+            _camera = camera;
 
             _gameStateHolder.OnGameStateUpdated += OnGameStateUpdated;
         }
@@ -40,7 +42,11 @@ namespace Handlers
                     _obstacleSpawner.OnObstacleDestroyed -= OnObstacleDestroyed;
                     DOTween.Sequence()
                         .Append(_player.CreateVictoryTween(_destination.Transform.position))
-                        .AppendCallback(() => _gameStateHolder.GameState = GameState.GameOverScreenShowing)
+                        .AppendCallback(() =>
+                        {
+                            _camera.PlayShake(0.25f);
+                            _gameStateHolder.GameState = GameState.GameOverScreenShowing;
+                        })
                         .Play();
                     break;
                 

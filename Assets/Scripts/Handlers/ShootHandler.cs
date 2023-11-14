@@ -15,6 +15,7 @@ namespace Handlers
         private readonly GameStateHolder _gameStateHolder;
         private readonly GameConfig _gameConfig;
         private readonly TickableManager _tickableManager;
+        private readonly CameraView _camera;
 
         private float _nextFireTime;
         private ProjectileView _projectile;
@@ -23,7 +24,7 @@ namespace Handlers
         private bool _isTicking;
 
         public ShootHandler(PlayerView player, ViewPool viewPool, ITouchManager touchManager,
-            GameStateHolder gameStateHolder, GameConfig gameConfig, TickableManager tickableManager)
+            GameStateHolder gameStateHolder, GameConfig gameConfig, TickableManager tickableManager, CameraView camera)
         {
             _player = player;
             _viewPool = viewPool;
@@ -31,6 +32,7 @@ namespace Handlers
             _gameStateHolder = gameStateHolder;
             _gameConfig = gameConfig;
             _tickableManager = tickableManager;
+            _camera = camera;
 
             _gameStateHolder.OnGameStateUpdated += OnGameStateUpdated;
         }
@@ -105,8 +107,10 @@ namespace Handlers
         {
             var position = projectile.Transform.position;
             var explosion = _viewPool.Pop<ExplosionView>(PrefabType.Explosion, position, Quaternion.identity);
-           explosion.Explode(projectile.Energy * _gameConfig.explosionScalePerEnergy);
-           _viewPool.Pop<ProjectileBreakParticlesView>(PrefabType.ProjectileBreakEffect, position, Quaternion.identity);
+            explosion.Explode(projectile.Energy * _gameConfig.explosionScalePerEnergy);
+
+            _viewPool.Pop<ProjectileBreakParticlesView>(PrefabType.ProjectileBreakEffect, position, Quaternion.identity);
+            _camera.PlayShake(projectile.Energy);
         }
 
         void ITickable.Tick()
