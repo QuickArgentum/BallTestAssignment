@@ -49,6 +49,7 @@ namespace Handlers
                     break;
                 
                 case GameState.GameOverScreenShowing:
+                    _gameOverPanelUI.SetTitle(_gameStateHolder.PlayerEnergy <= 0 ? Strings.GameOver : Strings.Victory);
                     _gameOverPanelUI.SetEnabled(true);
                     _gameOverPanelUI.CreateFadeInTween()
                         .OnComplete(() => _gameStateHolder.GameState = GameState.GameOver)

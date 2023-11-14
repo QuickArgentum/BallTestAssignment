@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Data;
 using UnityEngine;
 using View;
@@ -7,6 +8,10 @@ using Random = UnityEngine.Random;
 
 public class ObstacleSpawner : IInitializable
 {
+    public event Action OnObstacleInfected;
+
+    public event Action OnObstacleDestroyed;
+    
     private readonly Transform _container;
     private readonly ViewPool _viewPool;
     private readonly GameConfig _gameConfig;
@@ -40,6 +45,7 @@ public class ObstacleSpawner : IInitializable
             {
                 obstacle.OnInfected -= OnInfected;
                 obstacle.StartCoroutine(InfectedCoroutine(obstacle));
+                OnObstacleInfected?.Invoke();
             }
 
             obstacle.OnInfected += OnInfected;
@@ -53,5 +59,6 @@ public class ObstacleSpawner : IInitializable
         _viewPool.Pop<OneShotParticlesView>(PrefabType.ObstacleDeathEffect, obstacle.Transform.position,
             Quaternion.Euler(-90, 0, 0));
         obstacle.Push();
+        OnObstacleDestroyed?.Invoke();
     }
 }

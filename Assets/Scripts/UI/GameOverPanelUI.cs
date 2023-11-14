@@ -16,18 +16,20 @@ namespace UI
 
         private void Awake()
         {
-            _color = image.color;
+            _color = image.color;                    
+            image.color = new Color(_color.r, _color.g, _color.b, 0);
+            title.alpha = 0;
+            subtitle.alpha = 0;
+        }
+
+        public void SetTitle(string value)
+        {
+            title.text = value;
         }
 
         public Tween CreateFadeInTween()
         {
             return DOTween.Sequence()
-                .AppendCallback(() =>
-                {
-                    image.color = new Color(_color.r, _color.g, _color.b, 0);
-                    title.alpha = 0;
-                    subtitle.alpha = 0;
-                })
                 .Append(image.DOFade(_color.a, elementFadeDuration))
                 .Append(title.DOFade(1, elementFadeDuration))
                 .Append(subtitle.DOFade(1, elementFadeDuration));

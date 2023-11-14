@@ -32,6 +32,7 @@ namespace DI
             Container.Bind<PlayerVisualsHandler>().AsSingle().NonLazy();
             Container.Bind<GameOverHandler>().AsSingle().NonLazy();
             Container.Bind<GameTransitionHandler>().AsSingle().NonLazy();
+            Container.Bind<VictoryHandler>().AsSingle().NonLazy();
         }
     }
 }

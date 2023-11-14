@@ -5,6 +5,7 @@
         None,
         FadingIn,
         Playing,
+        WinAnimationShowing,
         GameOverScreenShowing,
         GameOver,
         FadingOut

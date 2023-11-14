@@ -43,6 +43,7 @@ namespace Handlers
                     _touchManager.OnTapEnd += OnTapEnd;
                     break;
                 
+                case GameState.WinAnimationShowing:
                 case GameState.GameOverScreenShowing:
                     _touchManager.OnTapStart -= OnTapStart;
                     _touchManager.OnTapEnd -= OnTapEnd;
