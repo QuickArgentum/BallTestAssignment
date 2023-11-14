@@ -36,7 +36,8 @@ namespace View
                 .Join(Transform.DOScaleZ(0.8f, victoryAnticipationDuration))
                 .Append(Transform.DOMove(destination, victoryFlyDuration).SetEase(Ease.InCubic))
                 .Join(Transform.DOScaleZ(1.5f, victoryFlyDuration / 2).SetEase(Ease.InQuad))
-                .Join(Transform.DOScaleZ(1.0f, victoryFlyDuration / 2).SetEase(Ease.OutQuad));
+                .Join(Transform.DOScaleZ(1.0f, victoryFlyDuration / 2).SetEase(Ease.OutQuad))
+                .AppendCallback(() => mesh.gameObject.SetActive(false));
         }
 
         public void PlayDeathAnimation()

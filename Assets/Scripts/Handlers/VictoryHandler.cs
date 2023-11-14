@@ -44,6 +44,7 @@ namespace Handlers
                         .Append(_player.CreateVictoryTween(_destination.Transform.position))
                         .AppendCallback(() =>
                         {
+                            _destination.PlayVictoryAnimation();
                             _camera.PlayShake(0.25f);
                             _gameStateHolder.GameState = GameState.GameOverScreenShowing;
                         })
