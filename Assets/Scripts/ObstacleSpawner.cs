@@ -9,7 +9,6 @@ using Random = UnityEngine.Random;
 public class ObstacleSpawner : IInitializable
 {
     public event Action OnObstacleInfected;
-
     public event Action OnObstacleDestroyed;
     
     private readonly Transform _container;
