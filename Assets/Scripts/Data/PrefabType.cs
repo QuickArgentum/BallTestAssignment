@@ -5,6 +5,7 @@
         None,
         Projectile,
         Obstacle,
-        Explosion
+        Explosion,
+        ObstacleDeathEffect
     }
 }

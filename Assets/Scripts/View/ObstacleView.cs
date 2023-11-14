@@ -1,12 +1,18 @@
 ﻿using System;
+using DG.Tweening;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace View
 {
     public class ObstacleView : View
     {
-        [SerializeField] private Color infectedColor;
         [SerializeField] private new Renderer renderer;
+        [SerializeField] private Transform view;
+        [SerializeField] private Color infectedColor;
+        [SerializeField] private float infectionTime;
+        [SerializeField] [Range(0, 1)] private float scaleVariance;
+        [SerializeField] [Range(0, 1)] private float tiltVariance;
 
         private Material _material;
         private bool _isInfected;
@@ -24,8 +30,17 @@ namespace View
                 return;
 
             _isInfected = true;
-            _material.color = infectedColor;
+            _material.DOColor(infectedColor, infectionTime);
             OnInfected?.Invoke();
+        }
+
+        public override void OnPop()
+        {
+            view.localScale = Vector3.one * Random.Range(1 - scaleVariance, 1);
+            var randomVec2 = Random.insideUnitCircle;
+            var randomAxis = Vector3.Lerp(new Vector3(randomVec2.x, 0, randomVec2.y), Vector3.up,
+                Random.Range(1 - tiltVariance, 1));
+            view.localRotation = Quaternion.AngleAxis(Random.Range(0, 360), randomAxis);
         }
     }
 }

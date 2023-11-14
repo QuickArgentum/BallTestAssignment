@@ -34,7 +34,7 @@ public class ObstacleSpawner : IInitializable
                 continue;
 
             var obstacle = _viewPool.Pop<ObstacleView>(PrefabType.Obstacle, position + containerPosition,
-                Quaternion.AngleAxis(Random.Range(0, 360), Vector3.up));
+                Quaternion.identity);
 
             void OnInfected()
             {
@@ -50,6 +50,8 @@ public class ObstacleSpawner : IInitializable
     private IEnumerator InfectedCoroutine(ObstacleView obstacle)
     {
         yield return new WaitForSeconds(_gameConfig.obstacleDeathDelay);
+        _viewPool.Pop<OneShotParticlesView>(PrefabType.ObstacleDeathEffect, obstacle.Transform.position,
+            Quaternion.Euler(-90, 0, 0));
         obstacle.Push();
     }
 }
