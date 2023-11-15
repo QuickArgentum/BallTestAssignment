@@ -5,6 +5,9 @@ using Random = UnityEngine.Random;
 
 namespace View
 {
+    /// <summary>
+    /// Component attached to obstacles. Randomizes some of their transform values on creation for visual fidelity
+    /// </summary>
     public class ObstacleView : View
     {
         [SerializeField] private new Renderer renderer;

@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace View
 {
+    /// <summary>
+    /// Component attached to the player ball controlling its size and victory/loss animations
+    /// </summary>
     public class PlayerView : View
     {
         [SerializeField] private Transform projectilePoint;

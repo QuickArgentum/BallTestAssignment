@@ -4,6 +4,9 @@ using View;
 
 namespace Handlers
 {
+    /// <summary>
+    /// Responsible for changing the appearance of the player ball according to its current energy
+    /// </summary>
     public class PlayerVisualsHandler
     {
         private readonly PlayerView _player;

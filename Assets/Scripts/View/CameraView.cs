@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace View
 {
+    /// <summary>
+    /// Component attached to camera responsible for animating FOV and shaking it
+    /// </summary>
     public class CameraView : View
     {
         [SerializeField] private float fovAnimDelta;

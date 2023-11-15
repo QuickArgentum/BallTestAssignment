@@ -7,6 +7,10 @@ using Zenject;
 
 namespace Handlers
 {
+    /// <summary>
+    /// Responsible for creating projectiles when the player taps the screen, transferring energy into them when the
+    /// player holds and creating explosions when the projectile collides with something
+    /// </summary>
     public class ShootHandler : ITickable
     {
         private readonly PlayerView _player;

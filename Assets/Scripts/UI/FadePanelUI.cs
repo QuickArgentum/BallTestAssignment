@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 namespace UI
 {
+    /// <summary>
+    /// Simple ui element which blackens the screen while the game is starting and when it is ending
+    /// </summary>
     public class FadePanelUI : UIBase
     {
         [SerializeField] private Image image;

@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace View
 {
+    /// <summary>
+    /// Component attached to projectiles controlling their size and collision logic
+    /// </summary>
     public class ProjectileView : View
     {
         [SerializeField] private float scalePerEnergy;

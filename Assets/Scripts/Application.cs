@@ -12,8 +12,8 @@ public static class Application
         var width = (int)(height * 0.5625);
         Screen.SetResolution(width, height, FullScreenMode.Windowed);
 #else
+        // On mobile set target framerate to 60 fps because Unity forces it to 30 for some reason
         UnityEngine.Application.targetFrameRate = 60;
 #endif
-
     }
 }

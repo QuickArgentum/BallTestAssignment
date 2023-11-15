@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace View
 {
+    /// <summary>
+    /// Component attached to player explosions controlling their animation and obstacle infection logic
+    /// </summary>
     public class ExplosionView : View
     {
         [SerializeField] private new Renderer renderer;

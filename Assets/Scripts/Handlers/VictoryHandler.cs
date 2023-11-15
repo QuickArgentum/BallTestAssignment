@@ -7,6 +7,9 @@ using View;
 
 namespace Handlers
 {
+    /// <summary>
+    /// Responsible for detecting when the player wins the game and playing the victory animation
+    /// </summary>
     public class VictoryHandler
     {
         private readonly ObstacleSpawner _obstacleSpawner;

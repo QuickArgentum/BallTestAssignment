@@ -7,6 +7,9 @@ using View;
 
 namespace Handlers
 {
+    /// <summary>
+    /// Responsible for triggering all the transition animations in the game
+    /// </summary>
     public class GameTransitionHandler
     {
         private readonly GameStateHolder _gameStateHolder;
@@ -72,7 +75,7 @@ namespace Handlers
                     DOTween.Sequence()
                         .Join(_fadePanelUI.CreateFadeInTween())
                         .Join(_cameraView.CreateOutroTween())
-                        .OnComplete(() => _facade.RestartGame())
+                        .OnComplete(() => _facade.EndGame())
                         .Play();
                     break;
             }

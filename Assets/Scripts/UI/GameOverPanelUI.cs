@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 namespace UI
 {
+    /// <summary>
+    /// UI element which displays victory or loss message and prompts the user to tap the screen to restart the game
+    /// </summary>
     public class GameOverPanelUI : UIBase
     {
         [SerializeField] private Image image;

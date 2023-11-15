@@ -3,6 +3,9 @@ using DataHolder;
 using UnityEngine.SceneManagement;
 using Zenject;
 
+/// <summary>
+/// Global game facade to control its state (to start and end it currently)
+/// </summary>
 public class GameFacade : IInitializable
 {
     private readonly GameStateHolder _gameStateHolder;
@@ -12,7 +15,7 @@ public class GameFacade : IInitializable
         _gameStateHolder = gameStateHolder;
     }
     
-    public void RestartGame()
+    public void EndGame()
     {
         SceneManager.LoadScene(0);
     }

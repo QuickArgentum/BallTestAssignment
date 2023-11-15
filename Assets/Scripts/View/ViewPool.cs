@@ -6,6 +6,9 @@ using Zenject;
 
 namespace View
 {
+    /// <summary>
+    /// Object which may be viewed as a factory for creating and removing all the poolable prefabs by their type
+    /// </summary>
     public class ViewPool
     {
         private readonly Dictionary<PrefabType, IObjectPool<View>> _pools = new();

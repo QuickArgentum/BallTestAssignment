@@ -8,6 +8,10 @@ using Zenject;
 
 namespace DI
 {
+    /// <summary>
+    /// Main game installer this object may be viewed as the entry point of the application and this is where
+    /// Zenject installs all the types into the DI container
+    /// </summary>
     public class MainSceneInstaller : MonoInstaller
     {
         [SerializeField] private PoolablePrefabConfig[] poolablePrefabConfigs;

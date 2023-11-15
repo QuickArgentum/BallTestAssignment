@@ -3,6 +3,9 @@ using Zenject;
 
 namespace View
 {
+    /// <summary>
+    /// Component attached to particle systems which spawn when the projectile hits something and is destroyed
+    /// </summary>
     public class ProjectileBreakParticlesView : OneShotParticlesView
     {
         [Inject] private CameraView _camera;

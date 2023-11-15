@@ -3,6 +3,9 @@ using Zenject;
 
 namespace Input
 {
+    /// <summary>
+    /// Manages screen tap events on mobile platforms
+    /// </summary>
     public class TouchManager : ITouchManager, ITickable
     {
         public event Action OnTapStart;

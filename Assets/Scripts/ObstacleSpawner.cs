@@ -6,6 +6,9 @@ using View;
 using Zenject;
 using Random = UnityEngine.Random;
 
+/// <summary>
+/// Object to spawn and hold references to obstacles (currently only events)
+/// </summary>
 public class ObstacleSpawner : IInitializable
 {
     public event Action OnObstacleInfected;

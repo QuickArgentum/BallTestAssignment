@@ -3,6 +3,9 @@ using DataHolder;
 
 namespace Handlers
 {
+    /// <summary>
+    /// Responsible for detecting when the player loses the game and transitioning accordingly
+    /// </summary>
     public class GameOverHandler
     {
         private readonly GameStateHolder _gameStateHolder;
