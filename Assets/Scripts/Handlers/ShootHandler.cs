@@ -51,7 +51,7 @@ namespace Handlers
                     if (_isTicking)
                         _tickableManager.Remove(this);
                     
-                    if(_projectile != null)
+                    if (_projectile != null)
                         _projectile.PlayDisappearAnimation();
                     
                     _isTicking = false;
