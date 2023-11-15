@@ -8,7 +8,7 @@ namespace View
 {
     public class ViewPool
     {
-        private readonly Dictionary<PrefabType, IObjectPool<GameObject>> _pools = new();
+        private readonly Dictionary<PrefabType, IObjectPool<View>> _pools = new();
         private readonly Dictionary<PrefabType, GameObject> _prefabs = new();
 
         public ViewPool(PoolablePrefabConfig[] configs, DiContainer container)
@@ -17,41 +17,41 @@ namespace View
             {
                 _prefabs[config.type] = config.prefab;
 
-                GameObject Create()
+                View Create()
                 {
                     var obj = container.InstantiatePrefab(_prefabs[config.type]);
                     var view = obj.GetComponent<View>();
                     view.Pool = this;
                     view.Type = config.type;
-                    return obj;
+                    return view;
                 }
 
-                _pools[config.type] = new ObjectPool<GameObject>(Create, OnGet, OnRelease);
+                _pools[config.type] = new ObjectPool<View>(Create, OnGet, OnRelease);
             }
         }
 
-        private void OnGet(GameObject obj)
+        private void OnGet(View view)
         {
-            obj.SetActive(true);
-            obj.GetComponent<View>().OnPop();
+            view.gameObject.SetActive(true);
+            view.OnPop();
         }
         
-        private void OnRelease(GameObject obj)
+        private void OnRelease(View view)
         {
-            obj.SetActive(false);
-            obj.GetComponent<View>().OnPush();
+            view.gameObject.SetActive(false);
+            view.OnPush();
         }
 
-        public T Pop<T>(PrefabType type, Vector3 position, Quaternion rotation)
+        public T Pop<T>(PrefabType type, Vector3 position, Quaternion rotation) where T : View
         {
-            var obj = _pools[type].Get();
-            obj.transform.SetPositionAndRotation(position, rotation);
-            return obj.GetComponent<T>();
+            var view = _pools[type].Get();
+            view.Transform.SetPositionAndRotation(position, rotation);
+            return view as T;
         }
 
         public void Push(View view)
         {
-            _pools[view.Type].Release(view.gameObject);
+            _pools[view.Type].Release(view);
         }
     }
 }
